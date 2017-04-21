@@ -6,6 +6,7 @@
 ** whitespaces in a given
 ** string (input).
 */
+#define IO_CHARACTER_ARRAY_SIZE 100
 
 int main () {
 
@@ -16,29 +17,31 @@ int main () {
     ** arrays since I haven't
     ** been introduced to dynamic.
     */
-    char input [100], blank[100];
+    char input [IO_CHARACTER_ARRAY_SIZE],
+         ouput [IO_CHARACTER_ARRAY_SIZE];
+
     fgets(input, 100, stdin);
-    int i = 0, k = 0;
+    int inputIndex = 0, outPutIndex = 0;
 
     // Looping over input until hitting
     // an item containing a null-char.
-    while (input[i] != '\0') {
-        if (input[i] == ' ') { // hitting first space.
-            int j = i + 1;     // initiating temporary counter.
-            if (input[j] != '\0') {
+    while ((inputIndex < IO_CHARACTER_ARRAY_SIZE) && input[inputIndex] != '\0') {
+        if (input[inputIndex] == ' ') { // hitting first space.
+            int tempIndex = inputIndex + 1;     // initiating temporary counter.
+            if (input[tempIndex] != '\0') {
                                // find index of first non-space
                                // character after initial space.
-                while (input[j] != '\0' && input[j] == ' ') {
-                    if (input[j] == ' ') {
-                        i++; // keep indexing input-index
+                while (input[tempIndex] != '\0' && input[tempIndex] == ' ') {
+                    if (input[tempIndex] == ' ') {
+                        inputIndex++; // keep indexing input-index
                     }
-                    j++; // keep incrementing temporary indexer.
+                    tempIndex++; // keep incrementing temporary indexer.
                 }
             }
         }
-        blank[k] = input[i]; // insert non-space item into output.
-        i++;                 // increment input-indexer.
-        k++;                 // prepare output-indexer for next non-space.
+        ouput[outPutIndex] = input[inputIndex]; // insert non-space item into output.
+        inputIndex++;                 // increment input-indexer.
+        outPutIndex++;                 // prepare output-indexer for next non-space.
     }
-    printf("%s", blank);    // print trimmed input.
+    printf("%s", ouput);    // print trimmed input.
 }
