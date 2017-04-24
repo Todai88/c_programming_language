@@ -3,19 +3,19 @@
 #define MAXLINE 1000
 
 int get_line(char line[], int limit);
-void copy(char to[], char from[]);
+void reverse(char to[], char from[], int len);
 
 
 /*
 ** ## A simple program to take input
-** ## and return the longest string of
-** ## characters.
+** ## and reverse it, printing the
+** ## resulting array.
 */
 
 int main () {
 
     int len, max;
-    char line[MAXLINE], longest[MAXLINE];
+    char input[MAXLINE], output[MAXLINE];
 
     max = 0;
 
@@ -24,18 +24,13 @@ int main () {
     ** ## input is higher than 0.
     ** ## If higher then copies string into
     ** ## temporary placeholder and sets new max-length.
-    */ .
-    while((len = get_line(line, MAXLINE)) > 0) {
-        if (len > max) {
-            max = len;
-            copy (longest, line);
-        }
-    }
+    */
 
-    if (max > 0) {
-        printf("Strings longer than 80 characters:\n ", longest);
+    while((len = get_line(input, MAXLINE)) > 0) {
+            printf("input: %slength: %d\n", input, len);
+            reverse (output, input, len);
+            printf("%s reversed: %s\n", input, output);
     }
-
     return 0;
 }
 
@@ -61,10 +56,9 @@ int get_line(char line[], int limit) {
     return index;
 }
 
-void copy (char to[], char from[]) {
-
+void reverse (char output[], char input[], int len) {
     int index = 0;
-
-    while ((to[index] = from[index]) != '\0')
-        ++index;
+    printf("%s", input);
+    //while ((output[index] = input[len - index]) != '\0')
+    //    ++index;
 }

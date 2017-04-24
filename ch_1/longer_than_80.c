@@ -3,37 +3,38 @@
 #define MAXLINE 1000
 
 int get_line(char line[], int limit);
-void copy(char to[], char from[]);
+void add_to_end(char to[], char from[], int current_end);
 
 
 /*
-** ## A simple program to take input
-** ## and return the longest string of
+** ## A simple program to take input and
+** ## return all lines longer than 80
 ** ## characters.
 */
 
 int main () {
 
     int len, max;
-    char line[MAXLINE], longest[MAXLINE];
+    char line[MAXLINE], output[MAXLINE];
 
     max = 0;
-
+    int current_end = 0;
     /*
     ** ## Invoking get_line until length of supplied
-    ** ## input is higher than 0.
-    ** ## If higher then copies string into
-    ** ## temporary placeholder and sets new max-length.
-    */ .
+    ** ## input is lower than 0.
+    ** ## If higher length is higher than 80,
+    ** ## it copies the input into output.
+    */
     while((len = get_line(line, MAXLINE)) > 0) {
-        if (len > max) {
+        if (len > 80) {
+            current_end += max;
             max = len;
-            copy (longest, line);
+            add_to_end (output, line, current_end);
         }
     }
 
     if (max > 0) {
-        printf("Strings longer than 80 characters:\n ", longest);
+        printf("Longest string: %sLength: %d\n", output, max);
     }
 
     return 0;
@@ -61,10 +62,10 @@ int get_line(char line[], int limit) {
     return index;
 }
 
-void copy (char to[], char from[]) {
+void add_to_end (char output[], char from[], int current_end) {
 
     int index = 0;
 
-    while ((to[index] = from[index]) != '\0')
+    while ((output[current_end + index] = from[index]) != '\0')
         ++index;
 }
