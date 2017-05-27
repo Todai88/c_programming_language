@@ -23,8 +23,8 @@ void itoa(int number, char string_out [], int width) {
 
     int i = width;
     do {
-        int num = number / 10;
-        string_out[i] = ((number /= 10) > 0) ? number % 10 + '0' : ' ';
+        string_out[i] = (number > 0) ? number % 10 + '0' : ' ';
+        number /= 10;
     } while ((i--) != 0);
     string_out[width + 1] = '\0';
 }
